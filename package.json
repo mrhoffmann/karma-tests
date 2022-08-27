@@ -8,8 +8,6 @@
 		"watch": "ng build --watch --configuration development",
 		"prod": "ng serve --prod",
 		"test": "ng test --watch=false",
-		"generate": "node ./database/generateDB.js > ./database/database.json",
-		"server": "json-server --watch ./database/database.json",
 		"ci": "npm run lint && npm run test && npm run build",
 		"lint": "eslint . --ext .ts",
 		"pretty": "npx prettier --write ."
