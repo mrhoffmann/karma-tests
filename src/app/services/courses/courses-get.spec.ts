@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 describe('CoursesService', () => {
 	let httpTestingController: HttpTestingController; //setup a fake controller to mock the http requests
 	let service: CoursesService; //setup the service so that we may have knowledge of functions, variables and more
-	let serviceSpy: jasmine.SpyObj<CoursesService>;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -33,11 +32,11 @@ describe('CoursesService', () => {
 		//This would make it undefined, unless you specify your own return value.
 
 		/*
-      this is a way to alter the function so that it would always return a specific answer. 
-      const spy = spyOn(service, 'getCoursesByTopic').and.returnValue("example"); //like this.
-      const spy = spyOn(service, 'getCoursesByTopic').and.callFake(example => {return example + 1}); //or like this
-      Define what mock course we want the response to return
-    */
+			this is a way to alter the function so that it would always return a specific answer. 
+			const spy = spyOn(service, 'getCoursesByTopic').and.returnValue("example"); //like this.
+			const spy = spyOn(service, 'getCoursesByTopic').and.callFake(example => {return example + 1}); //or like this
+			Define what mock course we want the response to return
+		*/
 		const mockCourses = environment.mockResponse;
 
 		//make a request using the getCoursesByTopic call, this would trigger the http-request normally
@@ -54,10 +53,10 @@ describe('CoursesService', () => {
 		});
 
 		/*
-      expect one call to be made to the certain URL that this http-request made by getCoursesByTopic to normally have done
-      instead of mocking the function itself, we can mock the http-request it makes itself, in such way not altering the way of the 
-      service in any way.
-    */
+			expect one call to be made to the certain URL that this http-request made by getCoursesByTopic to normally have done
+			instead of mocking the function itself, we can mock the http-request it makes itself, in such way not altering the way of the 
+			service in any way.
+		*/
 		const req = httpTestingController.expectOne(
 			//if we'd expect more than ONE (1) request
 			`${environment.apiURL}/topics/1/courses`

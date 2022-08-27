@@ -2,16 +2,23 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { Course } from 'src/app/models/courses.model';
+
+const mockResponses: Course[] = [
+	<Course>{
+		name: 'Chessable',
+		description: 'Space repetition to learn chess, backed by science',
+	},
+	<Course>{
+		name: 'ICC',
+		description: 'Play chess online',
+	},
+];
+
 export const environment = {
 	production: false,
 	apiURL: 'http://localhost:8089',
-	mockResponse: [
-		{
-			name: 'Chessable',
-			description: 'Space repetition to learn chess, backed by science',
-		},
-		{ name: 'ICC', description: 'Play chess online' },
-	],
+	mockResponse: mockResponses,
 };
 
 /*
