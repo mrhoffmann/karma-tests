@@ -10,7 +10,8 @@
 		"test": "ng test --watch=false",
 		"ci": "npm run lint && npm run test && npm run build",
 		"lint": "eslint . --ext .ts",
-		"pretty": "npx prettier --write ."
+		"pretty": "npx prettier --write .",
+		"git": "npm run pretty && npm run lint && npm run test"
 	},
 	"private": true,
 	"dependencies": {
