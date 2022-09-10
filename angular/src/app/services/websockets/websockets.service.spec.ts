@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { WebSocketService } from './websocket.service';
 
-fdescribe('WebSocketsService', () => {
+describe('WebSocketsService', () => {
 	let server: WebSocketService;
 	let messages: string[];
 	let spy: any;
