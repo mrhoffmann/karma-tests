@@ -1,32 +1,34 @@
 import { TestBed } from '@angular/core/testing';
+import { WebSocketService } from './websocket.service';
 
-describe('WebsocketsService', () => {
+fdescribe('WebSocketsService', () => {
+	let server: WebSocketService;
+	let messages: string[];
+	let spy: any;
+
 	beforeEach(() => {
-		TestBed.configureTestingModule({});
-		const socket = io('ws://localhost:3000');
-		socket.on('connect', () => {
-			// either with send()
-
-			socket.send('Hello!');
-			// or with emit() and custom event names
-			socket.emit(
-				'salutations',
-				'Hello!',
-				{ dr: 'jordan' },
-				Uint8Array.from([1, 2, 3, 4])
-			);
+		TestBed.configureTestingModule({
+			declarations: [],
+			providers: [WebSocketService],
 		});
-		// handle the event sent with socket.send()
-
-		socket.on('message', (data) => {
-			console.log(data);
-		});
-		// handle the event sent with socket.emit()
-
-		socket.on('greetings', (elem1, elem2, elem3) => {
-			console.log(elem1, elem2, elem3);
+		messages = [];
+		server = TestBed.inject(WebSocketService);
+		spy = spyOn(server, 'sendMessage').and.callThrough();
+		server.getNewMessage().subscribe((value: string) => {
+			messages.push(value);
 		});
 	});
 
-	it('should be created', () => {});
+	afterAll(() => {
+		server.disconnect();
+	});
+
+	it('should be able to send a message', (done) => {
+		const input = 'testar';
+		server.sendMessage(input);
+		expect(messages.filter((x) => x == input)).toBeTruthy();
+		expect(server.sendMessage).toHaveBeenCalledOnceWith(input);
+		expect(spy).toHaveBeenCalledOnceWith(input);
+		done();
+	});
 });

@@ -16,5 +16,6 @@ const mockResponses: Course[] = [
 export const environment = {
 	production: false,
 	apiURL: 'http://localhost:8089',
+	socketEndPoint: 'http://localhost:3000',
 	mockResponse: mockResponses,
 };
